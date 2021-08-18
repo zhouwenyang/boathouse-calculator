@@ -74,3 +74,17 @@ docker run -v "${PWD}/postman:/etc/newman" -t postman/newman:alpine run boathous
 ## with junit format report 
 docker run -v "${PWD}/postman:/etc/newman" -t postman/newman:alpine run boathouse-calculator.postman_collection.json -e local-dev.postman_environment.json --reporters junit --reporter-junit-export 'result-docker.xml'
 ```
+
+
+
+DEBUG
+
+```shell
+
+git clone https://github.com/zhouwenyang/boathouse-calculator
+cd boathouse-calculator
+docker run -it --init -p 3000:3000 --expose 3001 -p 3001:3001 -v "$(pwd):/home/project" theiaide/theia:next --inspect=0.0.0.0:3001
+npm install 
+运行debug
+
+```shell
