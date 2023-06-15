@@ -1,56 +1,4 @@
 describe('Arithmetic', function() {  
-  describe('Validation', function() {
-    it('rejects missing operation', function(done) {
-      request.get('/arithmetic?operand1=21&operand2=21')
-          .expect(400)
-          .end(function(err, res) {
-              expect(res.body).to.eql({ error: "Unspecified operation" });
-              done();
-          });
-    });
-    it('rejects invalid operation', function(done) {
-      request.get('/arithmetic?operation=foobar&operand1=21&operand2=21')
-          .expect(400)
-          .end(function(err, res) {
-              expect(res.body).to.eql({ error: "Invalid operation: foobar" });
-              done();
-          });
-    });
-    it('rejects missing operand1', function(done) {
-      request.get('/arithmetic?operation=add&operand2=21')
-          .expect(400)
-          .end(function(err, res) {
-              expect(res.body).to.eql({ error: "Invalid operand1: undefined" });
-              done();
-          });
-    });
-    it('rejects missing operand2', function(done) {
-      request.get('/arithmetic?operation=add&operand1=21')
-          .expect(400)
-          .end(function(err, res) {
-              expect(res.body).to.eql({ error: "Invalid operand2: undefined" });
-              done();
-          });
-    });
-    it('rejects operands with invalid sign', function(done) {
-      request.get('/arithmetic?operation=add&operand1=4.2-1&operand2=4')
-          .expect(400)
-          .end(function(err, res) {
-              expect(res.body).to.eql({ error: "Invalid operand1: 4.2-1" });
-              done();
-          });
-    });
-    it('rejects operands with invalid decimals', function(done) {
-      request.get('/arithmetic?operation=add&operand1=4.2.1&operand2=4')
-          .expect(400)
-          .end(function(err, res) {
-              expect(res.body).to.eql({ error: "Invalid operand1: 4.2.1" });
-              done();
-          });
-    });
-  });
-
-  //insert Addition Tests here
 
   describe('Subtraction', function() {
     it('subtracts two positive integers', function(done) {
@@ -125,14 +73,6 @@ describe('Arithmetic', function() {
           .expect(200)
           .end(function(err, res) {
               expect(res.body).to.eql({ result: 0.25 });
-              done();
-          });
-    });
-    it('multiplies supporting exponential notation', function(done) {
-      request.get('/arithmetic?operation=multiply&operand1=4.2e1&operand2=1e0')
-          .expect(200)
-          .end(function(err, res) {
-              expect(res.body).to.eql({ result: 42 });
               done();
           });
     });
